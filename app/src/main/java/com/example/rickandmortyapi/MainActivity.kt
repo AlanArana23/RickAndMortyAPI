@@ -1,5 +1,4 @@
-package com.example.rickandmortyapi // Asegúrate de que este paquete coincida con el del manifiesto
-
+package com.example.rickandmortyapi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

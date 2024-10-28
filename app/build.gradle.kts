@@ -70,4 +70,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.coil.kt.coil.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil.compose.v270)
 }
