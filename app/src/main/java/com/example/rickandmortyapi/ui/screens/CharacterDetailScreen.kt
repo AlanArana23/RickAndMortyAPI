@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.rickandmortyapi.models.Character
+import com.example.rickandmortyapi.models.Location
+import com.example.rickandmortyapi.models.Origin
 import com.example.rickandmortyapi.services.CharacterService
 import com.example.rickandmortyapi.ui.theme.RickAndMortyAPITheme
 import kotlinx.coroutines.launch
@@ -34,16 +36,16 @@ fun CharacterDetailScreen(id: Int, innerPaddingValues: PaddingValues) {
         mutableStateOf(Character(
             id = 0,
             name = "",
+            image = "",
             status = "",
+            created = "",
+            episode = emptyList(),
+            gender = "",
+            location = Location(name = "", url = ""),
+            origin = Origin(name = "", url = ""),
             species = "",
             type = "",
-            gender = "",
-            origin = null,
-            location = null,
-            image = "",
-            episode = emptyList(),
-            url = "",
-            created = ""
+            url = ""
         ))
     }
 

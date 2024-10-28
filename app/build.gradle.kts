@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.rickandmortyapi"
+    namespace = "com.example.rickmorty"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.rickandmortyapi"
+        applicationId = "com.example.rickmorty"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -68,6 +68,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
+    implementation(libs.coil.kt.coil.compose)
     implementation(libs.androidx.navigation.compose)
 }

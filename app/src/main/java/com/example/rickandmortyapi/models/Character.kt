@@ -6,11 +6,13 @@ data class Character(
     val gender: String,
     val id: Int,
     val image: String,
-    val location: Location?,  // Permite nulo
+    val location: Location,  // Permite nulo
     val name: String,
-    val origin: Origin?,  // Permite nulo
+    val origin: Origin,  // Permite nulo
     val species: String,
     val status: String,
     val type: String,
     val url: String
-)
+){
+    val computedName get() = if (name.length > 11) "${name.substring(0, 11)}..." else name
+}
