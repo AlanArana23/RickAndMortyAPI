@@ -1,29 +1,33 @@
-package com.example.rickandmortyapi
+package com.example.rickandmortyapi // Asegúrate de que este paquete coincida con el del manifiesto
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.rickandmortyapi.ui.screens.CharacterDetailScreen
+import com.example.rickandmortyapi.ui.screens.HomeScreen
 import com.example.rickandmortyapi.ui.theme.RickAndMortyAPITheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             RickAndMortyAPITheme {
+                // Creamos un NavController para manejar la navegación
+                val navController = rememberNavController()
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    // Configuramos la navegación
+                    NavGraph(navController = navController, innerPadding = innerPadding)
                 }
             }
         }
@@ -31,17 +35,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
+    NavHost(
+        navController = navController,
+        startDestination = "home",
+        modifier = Modifier.padding(innerPadding) // Aplicamos padding
+    ) {
+        // Pantalla principal de la lista de personajes
+        composable("home") {
+            HomeScreen(innerPadding = innerPadding, navController = navController)
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RickAndMortyAPITheme {
-        Greeting("Android")
+        // Pantalla de detalles de un personaje
+        composable("detail/{id}") { backStackEntry ->
+            val characterId = backStackEntry.arguments?.getString("id")?.toInt() ?: 0
+            CharacterDetailScreen(id = characterId, innerPaddingValues = innerPadding)
+        }
     }
 }
