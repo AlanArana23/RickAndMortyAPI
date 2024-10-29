@@ -63,8 +63,8 @@ fun HomeScreen(innerPadding: PaddingValues, navController: NavController){
                     .build()
                     .create(CharacterService::class.java)
 
-                val response = characterService.getCharacters() //OBTENEMOS LA LISTA ApiResponse
-                characters = response.results //OBTENEMOS LA LISTA DE PERSONAJES
+                val response = characterService.getCharacters()
+                characters = response.results
                 Log.i("HomeScreenResponse", characters.toString())
                 isLoading = false
             }

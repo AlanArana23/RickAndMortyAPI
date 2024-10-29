@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CharacterService {
-    @GET("character") // Cambio a "character" (sin "s" al final)
+    @GET("character") //no es lischaracter es ApiResponse para tener los datos de la api
     suspend fun getCharacters(): ApiResponse
 
-    @GET("character/{id}") // También cambio aquí a "character"
+    @GET("character/{id}")
     suspend fun getCharacterById(@Path("id") id: Int): Character
 }
